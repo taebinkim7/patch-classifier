@@ -14,7 +14,7 @@ git clone https://github.com/taebinkim7/tma-classifier.git
 ```
 Change the folder path in tma-classifier/Paths.py to match the data directories on your computer.
 
-Using python 3.7.2., (e.g. `conda create -n tma python=3.7.2`, `conda activate tma`) install the package `tma-classifier` by running
+Using python >= 3.7, (e.g. `conda create -n tma python=3.7.2`, `conda activate tma`) install the package `tma-classifier` by running
 ```
 pip install -e .
 ```
