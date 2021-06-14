@@ -10,11 +10,10 @@ class Paths(object):
 
         # top level data directory for the analysis
         # The user should modify this attribute before installing the package!
-        self.data_dir = '/datastore/nextgenout5/share/labs/smarronlab/tkim/data/med-ajive_9344/'
+        self.data_dir = '/datastore/nextgenout5/share/labs/smarronlab/tkim/data/tma_9830'
 
         self.patches_dir = os.path.join(self.data_dir, 'patches')
-        self.raw_image_dir = os.path.join(self.data_dir, 'raw_images')
-        self.pro_image_dir = os.path.join(self.data_dir, 'processed_images')
+        self.image_dir = os.path.join(self.data_dir, 'images')
         self.results_dir = os.path.join(self.data_dir, 'results')
 
     def make_directories(self):
@@ -23,6 +22,5 @@ class Paths(object):
         """
         os.makedirs(self.data_dir, exist_ok=True)
         os.makedirs(self.patches_dir, exist_ok=True)
-        os.makedirs(self.raw_image_dir, exist_ok=True)
-        os.makedirs(self.pro_image_dir, exist_ok=True)
+        os.makedirs(self.image_dir, exist_ok=True)
         os.makedirs(self.results_dir, exist_ok=True)

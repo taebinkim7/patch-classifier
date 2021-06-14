@@ -4,16 +4,16 @@ import os
 from skimage.io import imread
 from tqdm import tqdm
 
-from cbcs_joint.Paths import Paths
-from cbcs_joint.cbcs_utils import get_avail_images
-from cbcs_joint.patches.utils import get_patch
-from cbcs_joint.patches.utils import estimate_background, grid_coords_background_filtered, grid_gen, estimate_background_pixel, pad_image
-from cbcs_joint.patches.stream import StreamAvg, StreamVar
+from tma_classifier.Paths import Paths
+from tma_classifier.tma_utils import get_avail_images
+from tma_classifier.patches.utils import get_patch
+from tma_classifier.patches.utils import estimate_background, grid_coords_background_filtered, grid_gen, estimate_background_pixel, pad_image
+from tma_classifier.patches.stream import StreamAvg, StreamVar
 
 
-class CBCSPatchGrid(object):
+class PatchGrid(object):
     """
-    Breaks each core in the CBCS dataset into a grid of patches.
+    Breaks each core in the dataset into a grid of patches.
     Parameters
     ----------
     patch_size: int
@@ -271,7 +271,8 @@ class CBCSPatchGrid(object):
         """
         Loads a core image.
         """
-        fpath = os.path.join(Paths().pro_image_dir, image_key)
+        image_type = image_key.split('_')[-1][:2] # e.g., '<ID>_core1_er.jpg' gives 'er'
+        fpath = os.path.join(Paths().image_dir, image_type, image_key)
         image = imread(fpath)
         return image
 
