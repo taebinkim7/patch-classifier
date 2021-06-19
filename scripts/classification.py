@@ -23,7 +23,7 @@ def train_classifier(image_type, classifier_type, save_classifier=True):
         classifier = DWDClassifier().fit(train_feats, train_label)
 
     acc = classifier.score(test_feats, test_label)
-    print('Accuracy of trained {} is {}.'.format{classifier_type.upper(), acc})
+    print('Accuracy of trained {} is {}.'.format(classifier_type.upper(), acc))
 
     if save_classifier:
         classifier.save(os.path.join(Paths().results_dir,
