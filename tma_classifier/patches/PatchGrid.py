@@ -59,7 +59,6 @@ class PatchGrid(object):
 
         self.image_shapes_ = {}
         self.pixel_stats_ = {'avg': None, 'var': None}
-#         self.image_shapes_ = {}
         self.background_thresholds_ = {}
         self.background_props_ = {}
         self.background_pixel_ = {}

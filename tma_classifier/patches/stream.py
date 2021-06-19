@@ -12,6 +12,7 @@ class Stream(object):
         self.fit(data, *args, **kwargs)
         return self.value()
 
+
     def update(self, x, *args, **kwargs):
         # assert isinstance(x, numbers.Number)
         raise NotImplementedError
@@ -25,7 +26,7 @@ class StreamAvg(Stream):
     Computes the average of a stream of data.
     >>> x = np.random.normal(size=10)
     >>> true = np.mean(x)
-    >>> est = StreamAcg().fit(x).value()
+    >>> est = StreamAvg().fit(x).value()
     >>> assert true == est
     """
     def __init__(self):
