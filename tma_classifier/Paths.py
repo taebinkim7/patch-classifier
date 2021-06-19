@@ -9,7 +9,7 @@ class Paths(object):
     def __init__(self):
 
         # top level data directory for the analysis
-        # The user should modify this attribute before installing the package!
+        # The user should modify this attribute before installing the package if not using --editable option of pip.
         self.data_dir = '/datastore/nextgenout5/share/labs/smarronlab/tkim/data/tma_9830'
 
         self.patches_dir = os.path.join(self.data_dir, 'patches')
