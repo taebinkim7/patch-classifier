@@ -4,8 +4,9 @@ import pandas as pd
 
 from tma_classifier.Paths import Paths
 from tma_classifier.classifier.models import DWDClassifier
+from tma_classifier.classifier.utils import save_dataset
 
-def train_classifier(image_type, classifier_type, save_classifier=True):
+def train_classifier(image_type, classifier_type, save_classifier=True, save_dataset=True):
     core_centroids = pd.read_csv(os.path.join(Paths().patches_dir, 'core_centroids_' + image_type + '.csv'), index_col=0)
     core_labels = pd.read_csv(os.path.join(Paths().data_dir, 'core_labels_' + image_type + '.csv'), index_col=0)
 
@@ -23,10 +24,17 @@ def train_classifier(image_type, classifier_type, save_classifier=True):
         classifier = DWDClassifier().fit(train_feats, train_label)
 
     acc = classifier.score(test_feats, test_label)
-    print('Accuracy of trained {} is {}.'.format(classifier_type.upper(), acc))
+    print('The prediction accuracy of trained {} on test data is {}.'\
+            .format(classifier_type.upper(), acc))
 
     if save_classifier:
         classifier.save(os.path.join(Paths().results_dir,
                         classifier_type + '_' + image_type))
 
-train_classifier('er', 'dwd', True)
+    if save_dataset:
+        dataset = {'train': [train_feats, train_label],
+                   'test': [test_feats, test_label]}
+        fpath = os.path.join(Paths().data_dir, 'dataset_' + image_type)
+        save_dataset(dataset, fpath)
+
+train_classifier('er', 'dwd', True, True)

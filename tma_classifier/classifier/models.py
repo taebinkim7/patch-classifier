@@ -2,7 +2,15 @@ from joblib import dump, load
 from dwd import DWD
 
 
-class DWDClassifier(DWD):
+class Classifier(object):
+    def save(self, fpath, compress=3):
+        dump(self, fpath, compress=compress)
+
+    @classmethod
+    def load(cls, fpath):
+        return load(fpath)
+
+class DWDClassifier(DWD, Classifier):
     def __init__(self, C='auto'):
         super().__init__(C)
 
@@ -11,15 +19,12 @@ class DWDClassifier(DWD):
 
     def accuracy(self, X, y):
         return DWD.score(self, X, y)
+    #
+    # def save(self, fpath, compress=3):
+    #     dump(self, fpath, compress=compress)
+    #
+    # @classmethod
+    # def load(cls, fpath):
+    #     return load(fpath)
 
-    def save(self, fpath, compress=3):
-        """
-        Saves to disk, see documentation for joblib.dump
-        """
-        dump(self, fpath, compress=compress)
-
-    @classmethod
-    def load(cls, fpath):
-        return load(fpath)
-
-# TODO: Add svm, neural network
+# TODO: Add SVM, neural network
