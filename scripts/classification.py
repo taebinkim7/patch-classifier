@@ -38,3 +38,5 @@ def train_classifier(image_type, classifier_type, save_classifier=True, save_dat
         save_dataset(dataset, fpath)
 
 train_classifier('er', 'dwd', True, True)
+
+# TODO: Add argparse
