@@ -1,5 +1,7 @@
 # Breast Cancer TMA Classification
 
+This repository implements a patch-based TMA classification.
+
 # Instructions to run the code
 
 ### 1. Setup data directories
@@ -26,3 +28,9 @@ python scripts/patch_feat_extraction.py
 ```
 
 This step extracts CNN features from each image patch and may take a few hours. If a GPU is available it will automatically be used.
+
+### 4. TMA classification
+
+```
+python scripts/classification.py
+```
