@@ -34,7 +34,7 @@ def train_classifier(image_type, classifier_type, save_classifier=True, save_dat
     if save_datasets:
         dataset = {'train': [train_feats, train_label],
                    'test': [test_feats, test_label]}
-        fpath = os.path.join(Paths().data_dir, 'dataset_' + image_type)
+        fpath = os.path.join(Paths().data_dir, 'datasets_' + image_type)
         save_dataset(dataset, fpath)
 
 train_classifier('er', 'dwd', True, True)

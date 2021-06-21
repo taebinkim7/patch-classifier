@@ -35,8 +35,8 @@ class PatchGrid(object):
     """
 
     def __init__(self,
-                 patch_size=100,
-                 pad_image='div_100',
+                 patch_size=200,
+                 pad_image='div_200',
                  filter_background=True,
                  max_prop_background=0.9,
                  threshold_algo='triangle_otsu',
@@ -280,7 +280,8 @@ class PatchGrid(object):
             patch = patch.reshape(-1, 3)
             for pixel in patch:
                 if dtype is not None:
-                    pixel = pixel.astype(np.float)
+                    # pixel = pixel.astype(np.float)
+                    pixel = pixel.astype(dtype)
                 yield pixel
 
     def patch_generator(self, image_limit=None):
