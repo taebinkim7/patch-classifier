@@ -4,7 +4,7 @@ This repository implements a patch-based TMA classification.
 
 # Instructions to run the code
 
-### 1. Setup data directories
+### 1. Setup data directory
 
 tma-classifier/Paths.py has instructions for setting up the data directory.
 
