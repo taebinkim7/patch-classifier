@@ -6,6 +6,9 @@ from tma_classifier.Paths import Paths
 from tma_classifier.classifier.models import DWDClassifier
 from tma_classifier.classifier.utils import save_dataset
 
+
+# TODO: Add argparse for classifier type
+
 def train_classifier(image_type, classifier_type, save_classifier=True, save_datasets=True):
     core_centroids = pd.read_csv(os.path.join(Paths().patches_dir, 'core_centroids_' + image_type + '.csv'), index_col=0)
     core_labels = pd.read_csv(os.path.join(Paths().data_dir, 'core_labels_' + image_type + '.csv'), index_col=0)
@@ -38,5 +41,3 @@ def train_classifier(image_type, classifier_type, save_classifier=True, save_dat
         save_dataset(dataset, fpath)
 
 train_classifier('er', 'dwd', True, True)
-
-# TODO: Add argparse
