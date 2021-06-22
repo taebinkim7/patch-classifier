@@ -26,9 +26,12 @@ def train_classifier(image_type, classifier_type, save_classifier=True, save_dat
     if classifier_type == 'dwd':
         classifier = DWDClassifier().fit(train_feats, train_label)
 
-    acc = classifier.score(test_feats, test_label)
+    acc_train = classifier.score(train_feats, train_label)
+    acc_test = classifier.score(test_feats, test_label)
+    print('The prediction accuracy of the trained {} on the train data is {}.'\
+            .format(classifier_type.upper(), acc_train))
     print('The prediction accuracy of the trained {} on the test data is {}.'\
-            .format(classifier_type.upper(), acc))
+            .format(classifier_type.upper(), acc_test))
 
     if save_classifier:
         classifier.save(os.path.join(Paths().results_dir,
