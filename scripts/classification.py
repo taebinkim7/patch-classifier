@@ -17,7 +17,7 @@ def train_classifier(image_type, classifier_type, save_classifier=True, save_dat
     label = core_labels[image_type + '_label'].to_numpy().astype(int)
 
     n = len(label)
-    perm_idx = np.random.RandomState(seed=123).permutation(np.arange(n))
+    perm_idx = np.random.RandomState(seed=111).permutation(np.arange(n))
     train_idx, test_idx = perm_idx[:int(0.8 * n)], perm_idx[int(0.8 * n):]
 
     train_feats, test_feats = feats[train_idx], feats[test_idx]
