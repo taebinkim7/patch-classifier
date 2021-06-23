@@ -38,7 +38,7 @@ class PatchGrid(object):
                  patch_size=200,
                  pad_image='div_200',
                  filter_background=True,
-                 max_prop_background=0.9,
+                 max_prop_background=.9,
                  threshold_algo='triangle_otsu',
                  limit=None,
                  image_type='he'):

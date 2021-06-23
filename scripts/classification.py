@@ -10,15 +10,19 @@ from tma_classifier.classifier.utils import save_dataset
 # TODO: Add argparse for classifier type
 
 def train_classifier(image_type, classifier_type, save_classifier=True, save_datasets=True):
-    core_centroids = pd.read_csv(os.path.join(Paths().patches_dir, 'core_centroids_' + image_type + '.csv'), index_col=0)
-    core_labels = pd.read_csv(os.path.join(Paths().data_dir, 'core_labels_' + image_type + '.csv'), index_col=0)
+    core_centroids_file = os.path.join(Paths().patches_dir,
+                                       'core_centroids_' + image_type + '.csv')
+    core_labels_file = os.path.join(Paths().data_dir,
+                                    'core_labels_' + image_type + '.csv')
+    core_centroids = pd.read_csv(core_centroids_file, index_col=0)
+    core_labels = pd.read_csv(core_labels_file, index_col=0)
 
     feats = core_centroids.to_numpy()
     label = core_labels[image_type + '_label'].to_numpy().astype(int)
 
     n = len(label)
     perm_idx = np.random.RandomState(seed=111).permutation(np.arange(n))
-    train_idx, test_idx = perm_idx[:int(0.85 * n)], perm_idx[int(0.85 * n):]
+    train_idx, test_idx = perm_idx[:int(.85 * n)], perm_idx[int(.85 * n):]
 
     train_feats, test_feats = feats[train_idx], feats[test_idx]
     train_label, test_label = label[train_idx], label[test_idx]

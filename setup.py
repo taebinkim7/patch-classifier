@@ -1,16 +1,15 @@
 from setuptools import setup, find_packages
-
 # the analysis was done with Python version 3.7.2.
 
 install_requires = ['numpy',
                     'matplotlib',
                     'pandas',
                     'tqdm',
+                    'joblib',
                     'dwd',
-                    'torch==1.5.0',
-                    'torchvision==0.6.0',
                     'scikit-image==0.16.2',
-                    'joblib==0.14.1'
+                    'torch==1.5.0',
+                    'torchvision==0.6.0'
                     ]
 
 setup(name='tma_classifier',
