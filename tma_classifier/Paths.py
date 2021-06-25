@@ -12,15 +12,15 @@ class Paths(object):
         # The user should modify this attribute before installing the package if not using --editable option of pip.
         self.data_dir = '/datastore/nextgenout5/share/labs/smarronlab/tkim/data/tma_9830'
 
-        self.patches_dir = os.path.join(self.data_dir, 'patches')
         self.image_dir = os.path.join(self.data_dir, 'images')
-        self.results_dir = os.path.join(self.data_dir, 'results')
+        self.features_dir = os.path.join(self.data_dir, 'features')
+        self.clf_dir = os.path.join(self.data_dir, 'classification')
 
     def make_directories(self):
         """
         Creates the top level data directories.
         """
         os.makedirs(self.data_dir, exist_ok=True)
-        os.makedirs(self.patches_dir, exist_ok=True)
         os.makedirs(self.image_dir, exist_ok=True)
-        os.makedirs(self.results_dir, exist_ok=True)
+        os.makedirs(self.features_dir, exist_ok=True)
+        os.makedirs(self.clf_dir, exist_ok=True)

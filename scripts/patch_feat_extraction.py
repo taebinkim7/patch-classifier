@@ -11,7 +11,7 @@ from tma_classifier.Paths import Paths
 from tma_classifier.cnn_models import load_cnn_model
 
 
-os.makedirs(Paths().patches_dir, exist_ok=True)
+os.makedirs(Paths().features_dir, exist_ok=True)
 
 # CNN feature extraction model
 model = load_cnn_model()
@@ -34,7 +34,7 @@ def patch_feat_extraction(image_type):
     patch_dataset = PatchGrid(**patch_kws)
     patch_dataset.make_patch_grid()
     patch_dataset.compute_pixel_stats(image_limit=10)
-    patch_dataset.save(os.path.join(Paths().patches_dir,
+    patch_dataset.save(os.path.join(Paths().features_dir,
                                     'patch_dataset_' + image_type))
 
     ##############################
@@ -48,7 +48,7 @@ def patch_feat_extraction(image_type):
     patch_transformer = Compose([ToTensor(),
                                  Normalize(mean=channel_avg, std=channel_std)])
 
-    fpath = os.path.join(Paths().patches_dir,
+    fpath = os.path.join(Paths().features_dir,
                          'patch_features_' + image_type + '.csv')
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -60,19 +60,37 @@ def patch_feat_extraction(image_type):
                            device=device)
 
 
-    #######################
-    # save core centroids #
-    #######################
+    ######################
+    # save core features #
+    ######################
 
     patch_feats = pd.read_csv(fpath, index_col=['image', 'patch_idx'])
     patch_feats_ = patch_feats.copy()
-    mean_feats = patch_feats_.groupby('image').mean()
-    core_idxs = np.unique(patch_feats.index.get_level_values('image'))
-    core_centroids = pd.DataFrame(data=mean_feats,
-                                  index=core_idxs,
-                                  columns=patch_feats.columns)
-    core_centroids.to_csv(os.path.join(Paths().patches_dir,
-                                       'core_centroids_' + image_type + '.csv'))
+    core_mean_feats = patch_feats_.groupby('image').mean()
+    core_ids = np.unique(patch_feats.index.get_level_values('image'))
+    core_feats = pd.DataFrame(data=core_mean_feats,
+                              index=core_ids,
+                              columns=patch_feats.columns)
+    core_feats.to_csv(os.path.join(Paths().features_dir,
+                                   'core_features_' + image_type + '.csv'))
+
+    #########################
+    # save subject features #
+    #########################
+
+    core_feats_ = core_feats.copy()
+    subj_ids = []
+    for id in core_ids:
+        subj_ids.append(id.split('_')[0])
+    core_feats_.loc[:, 'subject'] = subj_ids
+    subj_ids = np.unique(subj_ids)
+    subj_mean_feats = core_feats_.groupby('subject').mean()
+    subj_feats = pd.DataFrame(data=subj_mean_feats,
+                              index=subj_ids,
+                              columns=core_feats.columns)
+    subj_feats.to_csv(os.path.join(Paths().features_dir,
+                                   'subj_features_' + image_type + '.csv'))
+
 
 
 # patch_feat_extraction('he')

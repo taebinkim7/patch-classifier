@@ -16,4 +16,4 @@ def get_avail_images(image_type='er'):
 
     image_list = glob(os.path.join(Paths().image_dir, image_type, '*'))
 
-    return [os.path.basename(im) for im in image_list]
+    return [os.path.basename(image) for image in image_list]

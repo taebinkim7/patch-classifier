@@ -20,7 +20,7 @@ def compute_patch_features(image_type,
     Parameters
     ----------
 
-    imgae_type: str
+    image_type: str
         Type of stain
     patch_dataset: PatchGrid
     model: pytorch module

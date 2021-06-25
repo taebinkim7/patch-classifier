@@ -258,7 +258,7 @@ def parallel_sample(fun, n_samples, n_jobs=None, **kwargs):
                                         for _ in range(n_samples)))
 
 
-def get_patch_map(patch_dataset, image_key, patch_idxs=None):
+def get_patch_map(patch_dataset, image_key, patch_idx=None):
     """
     Returns the patch map for a given image
     Parameters
@@ -270,13 +270,13 @@ def get_patch_map(patch_dataset, image_key, patch_idxs=None):
         number of times each pixel shows up in a patch.
     """
     # TODO: deprecate when new patch_dataset comes online
-    if patch_idxs is None:
-        patch_idxs = range(len(patch_dataset.top_lefts_[image_key]))
+    if patch_idx is None:
+        patch_idx = range(len(patch_dataset.top_lefts_[image_key]))
 
     image_shape = patch_dataset.load_image(image_key).shape[0:2]
     patch_map = np.zeros(image_shape)
     size = (patch_dataset.patch_size, patch_dataset.patch_size)
-    for idx in patch_idxs:
+    for idx in patch_idx:
         top_left = patch_dataset.top_lefts_[image_key][idx]
         patch_map[top_left[0]:(top_left[0] + size[1]),
                   top_left[1]:(top_left[1] + size[1])] += 1.0

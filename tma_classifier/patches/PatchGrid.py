@@ -51,11 +51,11 @@ class PatchGrid(object):
         self.limit = limit
         self.image_type = image_type
 
-        img_fnames = get_avail_images(self.image_type)
+        image_fnames = get_avail_images(self.image_type)
         if limit is not None:
-            img_fnames = img_fnames[0:limit]
+            image_fnames = image_fnames[0:limit]
 
-        self.top_lefts_ = {k: [] for k in img_fnames}
+        self.top_lefts_ = {k: [] for k in image_fnames}
 
         self.image_shapes_ = {}
         self.pixel_stats_ = {'avg': None, 'var': None}
@@ -138,14 +138,14 @@ class PatchGrid(object):
     def n_patches(self, image_key):
         return len(self.top_lefts_[image_key])
 
-    def load_patches(self, image_key, patch_index=None):
+    def load_patches(self, image_key, patch_idx=None):
         """
         Loads the patches for a given image.
         Parameters
         ----------
         image_key:
             Image key
-        patch_index: int, None
+        patch_idx: int, None
             Index or indices of the patch to return. If None, returns all patches.
         Output
         ------
@@ -154,19 +154,19 @@ class PatchGrid(object):
 
         image = self.load_image(image_key)
         patches = []
-        if patch_index is None:
+        if patch_idx is None:
             array_output = True
-            patch_index = range(self.n_patches(image_key))
+            patch_idx = range(self.n_patches(image_key))
 
-        elif type(patch_index) in [list, np.array]:
+        elif type(patch_idx) in [list, np.array]:
             array_output = True
 
         else:
             array_output = False
-            patch_index = [patch_index]
+            patch_idx = [patch_idx]
 
-        for ind in patch_index:
-            top_left = self.top_lefts_[image_key][ind]
+        for idx in patch_idx:
+            top_left = self.top_lefts_[image_key][idx]
             p = get_patch(image, top_left, size=self.patch_size)
             patches.append(p)
 
