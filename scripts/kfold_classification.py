@@ -8,9 +8,8 @@ from tma_classifier.classifier.utils import save_clf_dataset
 
 
 # TODO: Add argparse for classifier type (e.g., 'dwd') and level (e.g., 'core', 'subj')
-# TODO: implement 5-fold/10-fold cross validation
 
-def train_classifier(image_type, clf_level, clf_type, n_folds, save_dataset=True):
+def train_classifier(image_type, clf_level, clf_type, n_folds):
     feats_file = os.path.join(Paths().features_dir,
                               clf_level + '_features_' + image_type + '.csv')
     labels_file = os.path.join(Paths().classification_dir,
@@ -45,11 +44,4 @@ def train_classifier(image_type, clf_level, clf_type, n_folds, save_dataset=True
     print('{} folds accuracy of {} is {}.'\
             .format(n_folds, clf_type.upper(), kfold_acc))
 
-    if save_dataset:
-        dataset = {'train': [train_feats, train_labels],
-                   'test': [test_feats, test_labels]}
-        fpath = os.path.join(Paths().classification_dir,
-                             'clf_dataset_' + clf_level + '_' + image_type)
-        save_clf_dataset(dataset, fpath)
-
-train_classifier('er', 'subj', 'dwd', 5, True)
+train_classifier('er', 'subj', 'dwd', 5)
