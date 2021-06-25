@@ -14,7 +14,7 @@ class Paths(object):
 
         self.image_dir = os.path.join(self.data_dir, 'images')
         self.features_dir = os.path.join(self.data_dir, 'features')
-        self.clf_dir = os.path.join(self.data_dir, 'classification')
+        self.classification_dir = os.path.join(self.data_dir, 'classification')
 
     def make_directories(self):
         """
@@ -23,4 +23,4 @@ class Paths(object):
         os.makedirs(self.data_dir, exist_ok=True)
         os.makedirs(self.image_dir, exist_ok=True)
         os.makedirs(self.features_dir, exist_ok=True)
-        os.makedirs(self.clf_dir, exist_ok=True)
+        os.makedirs(self.classification_dir, exist_ok=True)

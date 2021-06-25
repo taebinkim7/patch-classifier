@@ -12,7 +12,7 @@ from tma_classifier.classifier.utils import save_clf_dataset
 def train_classifier(image_type, clf_level, clf_type, save_classifier=True, save_dataset=True):
     feats_file = os.path.join(Paths().features_dir,
                               clf_level + '_features_' + image_type + '.csv')
-    labels_file = os.path.join(Paths().data_dir,
+    labels_file = os.path.join(Paths().classification_dir,
                                clf_level + '_labels_' + image_type + '.csv')
     feats = pd.read_csv(feats_file, index_col=0)
     labels = pd.read_csv(labels_file, index_col=0)
@@ -38,13 +38,13 @@ def train_classifier(image_type, clf_level, clf_type, save_classifier=True, save
             .format(clf_type.upper(), acc_test))
 
     if save_classifier:
-        classifier.save(os.path.join(Paths().clf_dir,
+        classifier.save(os.path.join(Paths().classification_dir,
                         clf_type + '_' + clf_level + '_' + image_type))
 
     if save_dataset:
         dataset = {'train': [train_feats, train_labels],
                    'test': [test_feats, test_labels]}
-        fpath = os.path.join(Paths().clf_dir,
+        fpath = os.path.join(Paths().classification_dir,
                              'clf_dataset_' + clf_level + '_' + image_type)
         save_clf_dataset(dataset, fpath)
 
