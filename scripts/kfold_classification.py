@@ -24,10 +24,9 @@ def train_classifier(image_type, clf_level, clf_type, n_folds):
         Classifier = DWDClassifier
 
     n = len(labels)
+    perm_idx = np.random.RandomState(seed=111).permutation(np.arange(n))
     res = n % n_folds
     n_ = n - res
-    perm_idx = np.random.RandomState(seed=111).permutation(np.arange(n))
-    perm_idx_ = perm_idx[:-res]
     fold_idx_list = np.split(np.arange(n_), n_folds)
     acc_list = []
     for fold_idx in fold_idx_list:
