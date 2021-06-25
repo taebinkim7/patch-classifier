@@ -18,7 +18,7 @@ def train_classifier(image_type, clf_level, clf_type, save_classifier=True, save
     labels = pd.read_csv(labels_file, index_col=0)
 
     feats = feats.to_numpy()
-    labels = labels[image_type + '_labels'].to_numpy().astype(int)
+    labels = labels[image_type + '_label'].to_numpy().astype(int)
 
     n = len(labels)
     perm_idx = np.random.RandomState(seed=111).permutation(np.arange(n))
