@@ -12,9 +12,9 @@ install_requires = ['numpy',
                     'torchvision==0.6.0'
                     ]
 
-setup(name='tma_classifier',
+setup(name='patch_classifier',
       version='0.0.1',
-      description='Code to reproduce breast cancer TMA classification',
+      description='Code to reproduce patch-based binary classification',
       author='Taebin Kim',
       author_email='taebinkim@unc.edu',
       license='MIT',

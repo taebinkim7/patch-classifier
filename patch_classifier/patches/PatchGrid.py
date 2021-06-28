@@ -4,11 +4,11 @@ import os
 from skimage.io import imread
 from tqdm import tqdm
 
-from tma_classifier.Paths import Paths
-from tma_classifier.tma_utils import get_avail_images
-from tma_classifier.patches.utils import get_patch
-from tma_classifier.patches.utils import estimate_background, grid_coords_background_filtered, grid_gen, estimate_background_pixel, pad_image
-from tma_classifier.patches.stream import StreamAvg, StreamVar
+from patch_classifier.Paths import Paths
+from patch_classifier.image_utils import get_avail_images
+from patch_classifier.patches.utils import get_patch
+from patch_classifier.patches.utils import estimate_background, grid_coords_background_filtered, grid_gen, estimate_background_pixel, pad_image
+from patch_classifier.patches.stream import StreamAvg, StreamVar
 
 
 class PatchGrid(object):
@@ -18,9 +18,9 @@ class PatchGrid(object):
     ----------
     patch_size: int
         Dimensions of patches.
-    pad_image: str ('div_X'), int, Nont
-        Images are padded with their estimated background pixel to:
-         be divisible by the patch size (e.g. 'div_200') or have a specified shape. If None or False, will not pad images.
+    pad_image: str ('div_X'), int, None
+        Images are padded with their estimated background pixel to be divisible by the patch size (e.g. 'div_200') or have a specified shape.
+        If None or False, will not pad images.
     filter_background: bool
         Whether or not to ignore images with too much background.
     max_prop_background: float
@@ -29,9 +29,8 @@ class PatchGrid(object):
         Background estimation method, must be one of ['triangle', 'otsu', 'triange_otsu'].
     limit: None, int
         Maximum number of images to use. Useful for debugging purposes.
-
     image_type: str
-        Image type, must be one of ['he_raw', 'he', 'er_raw', 'er'].
+        Type of images to use.
     """
 
     def __init__(self,

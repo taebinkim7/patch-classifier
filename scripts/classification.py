@@ -2,9 +2,9 @@ import os
 import numpy as np
 import pandas as pd
 
-from tma_classifier.Paths import Paths
-from tma_classifier.classifier.models import DWDClassifier
-from tma_classifier.classifier.utils import save_clf_dataset
+from patch_classifier.Paths import Paths
+from patch_classifier.classifier.models import DWDClassifier
+from patch_classifier.classifier.utils import save_clf_dataset
 
 
 # TODO: Add argparse for classifier type (e.g., 'dwd') and level (e.g., 'core', 'subj')

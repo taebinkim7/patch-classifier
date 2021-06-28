@@ -1,22 +1,22 @@
-# Breast Cancer TMA Classification
+# Patch-based binary Classification
 
-This repository implements a patch-based TMA classification.
+This repository implements a patch-based binary classification.
 
 # Instructions to run the code
 
 ### 1. Setup data directory
 
-tma-classifier/Paths.py has instructions for setting up the data directory.
+patch-classifier/Paths.py has instructions for setting up the data directory.
 
 ### 2. Install code
 
 Download the github repository with
 ```
-git clone https://github.com/taebinkim7/tma-classifier.git
+git clone https://github.com/taebinkim7/patch-classifier.git
 ```
 Change the folder path in tma-classifier/Paths.py to match the data directories on your computer.
 
-Using python >= 3.7, (e.g. `conda create -n tma python=3.7.2`, `conda activate tma`) install the package `tma-classifier` by running
+Using python >= 3.7, install the package `patch-classifier` by running
 ```
 pip install -e .
 ```
@@ -29,7 +29,7 @@ python scripts/patch_feat_extraction.py
 
 This step extracts CNN features from each image patch and may take a few hours. If a GPU is available it will automatically be used.
 
-### 4. TMA classification
+### 4. Binary classification
 
 ```
 python scripts/classification.py
