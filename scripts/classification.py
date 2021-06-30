@@ -1,6 +1,9 @@
 import os
 import numpy as np
 import pandas as pd
+import tqdm
+
+from joblib import dump
 
 from patch_classifier.Paths import Paths
 from patch_classifier.classifier.models import DWDClassifier
@@ -9,7 +12,7 @@ from patch_classifier.classifier.utils import save_clf_dataset
 
 # TODO: Add argparse for classifier type (e.g., 'dwd') and level (e.g., 'core', 'subj')
 
-def train_classifier(image_type, clf_level, clf_type, save_classifier=True, save_dataset=True):
+def classification(image_type, clf_level, clf_type, seed=None, save_classifier=False, save_dataset=False):
     feats_file = os.path.join(Paths().features_dir,
                               clf_level + '_features_' + image_type + '.csv')
     labels_file = os.path.join(Paths().classification_dir,
@@ -21,7 +24,9 @@ def train_classifier(image_type, clf_level, clf_type, save_classifier=True, save
     labels = labels[image_type + '_label'].to_numpy().astype(int)
 
     n = len(labels)
-    perm_idx = np.random.RandomState(seed=111).permutation(np.arange(n))
+    perm_idx = np.random.permutation(np.arange(n))
+    if seed is not None:
+        perm_idx = np.random.RandomState(seed=111).permutation(np.arange(n))
     train_idx, test_idx = perm_idx[:int(.8 * n)], perm_idx[int(.8 * n):]
 
     train_feats, test_feats = feats[train_idx], feats[test_idx]
@@ -30,12 +35,12 @@ def train_classifier(image_type, clf_level, clf_type, save_classifier=True, save
     if clf_type == 'dwd':
         classifier = DWDClassifier().fit(train_feats, train_labels)
 
-    acc_train = classifier.score(train_feats, train_labels)
-    acc_test = classifier.score(test_feats, test_labels)
+    train_acc = classifier.score(train_feats, train_labels)
+    test_acc = classifier.score(test_feats, test_labels)
     print('The prediction accuracy of the trained {} on the train data is {}.'\
-            .format(clf_type.upper(), acc_train))
+            .format(clf_type.upper(), train_acc))
     print('The prediction accuracy of the trained {} on the test data is {}.'\
-            .format(clf_type.upper(), acc_test))
+            .format(clf_type.upper(), test_acc))
 
     if save_classifier:
         classifier.save(os.path.join(Paths().classification_dir,
@@ -48,4 +53,13 @@ def train_classifier(image_type, clf_level, clf_type, save_classifier=True, save
                              'clf_dataset_' + clf_level + '_' + image_type)
         save_clf_dataset(dataset, fpath)
 
-train_classifier('er', 'subj', 'dwd', True, True)
+    return train_acc, test_acc
+
+test_acc_list = []
+for i in tqdm(range(100)):
+    _, test_acc = classification('er', 'subj', 'dwd')
+    test_acc_list.append(test_acc)
+
+dump(test_acc_list, os.path.join(Paths().classification_dir, 'test_acc_list'))
+mean_test_acc = np.mean(test_acc_list)
+print(mean_test_acc)

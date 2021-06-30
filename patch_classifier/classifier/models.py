@@ -1,19 +1,18 @@
 import numpy as np
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
+
 from torch.utils.data import Dataset, DataLoader
 
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, classification_report
+# from sklearn.preprocessing import StandardScaler
+# from sklearn.model_selection import train_test_split
+# from sklearn.metrics import confusion_matrix, classification_report
 
 from joblib import dump, load
 from dwd import DWD
+
+from patch_classifier.classifier.nn_models import MLP
 
 
 class Classifier(object):
@@ -41,6 +40,12 @@ class DWDClassifier(DWD, Classifier):
     # def load(cls, fpath):
     #     return load(fpath)
 
-class NNClassifier(n.Mo)
+# include in script
+# device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+# model = MLP()
+# model.to(device)
 
-# TODO: Add SVM, neural network
+class MLPClassifier():
+
+
+# TODO: Add SVM, MLP

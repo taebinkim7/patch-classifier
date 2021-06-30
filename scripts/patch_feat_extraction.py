@@ -5,10 +5,10 @@ import pandas as pd
 
 from torchvision.transforms import Normalize, ToTensor, Compose
 
+from patch_classifier.Paths import Paths
 from patch_classifier.patches.PatchGrid import PatchGrid
 from patch_classifier.patches.patch_features import compute_patch_features
-from patch_classifier.Paths import Paths
-from patch_classifier.cnn_models import load_cnn_model
+from patch_classifier.patches.cnn_models import load_cnn_model
 
 
 os.makedirs(Paths().features_dir, exist_ok=True)
