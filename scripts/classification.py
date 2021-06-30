@@ -1,9 +1,9 @@
 import os
 import numpy as np
 import pandas as pd
-import tqdm
 
 from joblib import dump
+from tqdm import tqdm
 
 from patch_classifier.Paths import Paths
 from patch_classifier.classifier.models import DWDClassifier
