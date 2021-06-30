@@ -14,7 +14,7 @@ install_requires = ['numpy',
 
 setup(name='patch_classifier',
       version='0.0.1',
-      description='Code to reproduce patch-based binary classification',
+      description='Code to reproduce patch-based image classification',
       author='Taebin Kim',
       author_email='taebinkim@unc.edu',
       license='MIT',

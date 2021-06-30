@@ -1,6 +1,6 @@
-# Patch-based binary Classification
+# Patch-based image Classification
 
-This repository implements a patch-based binary classification.
+This repository implements patch-based image classification.
 
 # Instructions to run the code
 
