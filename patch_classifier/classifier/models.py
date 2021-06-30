@@ -45,7 +45,7 @@ class DWDClassifier(DWD, Classifier):
 # model = MLP()
 # model.to(device)
 
-class MLPClassifier():
+# class MLPClassifier():
 
 
 # TODO: Add SVM, MLP
