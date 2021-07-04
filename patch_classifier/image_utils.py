@@ -11,6 +11,6 @@ def get_avail_images(image_type):
     ----------
     image_type (str): the type of the image to return.
     """
-    image_list = glob(os.path.join(Paths().image_dir, image_type, '*'))
+    image_list = glob(os.path.join(Paths().images_dir, image_type, '*'))
 
     return [os.path.basename(image) for image in image_list]
