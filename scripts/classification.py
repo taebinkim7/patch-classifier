@@ -24,9 +24,7 @@ def classification(image_type, clf_level, clf_type, seed=None, save_classifier=F
     labels = labels[image_type + '_label'].to_numpy().astype(int)
 
     n = len(labels)
-    perm_idx = np.random.permutation(np.arange(n))
-    if seed is not None:
-        perm_idx = np.random.RandomState(seed=111).permutation(np.arange(n))
+    perm_idx = np.random.RandomState(seed=seed).permutation(np.arange(n))
     train_idx, test_idx = perm_idx[:int(.8 * n)], perm_idx[int(.8 * n):]
 
     train_feats, test_feats = feats[train_idx], feats[test_idx]
