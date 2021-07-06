@@ -82,7 +82,8 @@ def patch_feat_extraction(image_type):
     subj_ids = []
     for id in core_ids:
         subj_ids.append(id.split('_')[0])
-    core_feats_.loc[:, 'subject'] = subj_ids
+    # core_feats_.loc[:, 'subject'] = subj_ids
+    core_feats_['subject'] = subj_ids
     subj_ids = np.unique(subj_ids)
     subj_mean_feats = core_feats_.groupby('subject').mean()
     subj_feats = pd.DataFrame(data=subj_mean_feats,

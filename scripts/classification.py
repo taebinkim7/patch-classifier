@@ -18,7 +18,7 @@ def classification(image_type, clf_level, clf_type, seed=None, save_classifier=F
     labels_file = os.path.join(Paths().classification_dir,
                                clf_level + '_labels_' + image_type + '.csv')
     feats = pd.read_csv(feats_file, index_col=0)
-    labels = pd.read_csv(labels_file, ` index_col=0)
+    labels = pd.read_csv(labels_file, index_col=0)
 
     feats = feats.to_numpy()
     labels = labels[image_type + '_label'].to_numpy().astype(int)
