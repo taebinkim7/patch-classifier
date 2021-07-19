@@ -269,7 +269,10 @@ class PatchGrid(object):
         """
         Loads a core image.
         """
-        image_type = image_key.split('_')[-1][:2] # e.g., '<ID>_core1_er.jpg' gives 'er'
+        # get image type from image key, e.g., '<ID>_core1_er.jpg' gives 'er'
+        image_type = image_key.split('_')[-1]
+        image_type = image_type.split('.')[0]
+
         fpath = os.path.join(Paths().images_dir, image_type, image_key)
         image = imread(fpath)
         return image
