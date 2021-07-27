@@ -27,7 +27,7 @@ def patch_feat_extraction(image_type):
 
     patch_kws = {'patch_size': 200,
                  'pad_image': 'div_200',
-                 'max_prop_background': .9,
+                 'max_prop_background': .9, # 1. for 9344
                  'threshold_algo': 'triangle_otsu',
                  'image_type': image_type}
 
@@ -94,5 +94,5 @@ def patch_feat_extraction(image_type):
 
 
 
-# patch_feat_extraction('he')
+patch_feat_extraction('he')
 patch_feat_extraction('er')
