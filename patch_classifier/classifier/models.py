@@ -11,6 +11,7 @@ from torch.utils.data import Dataset, DataLoader
 
 from joblib import dump, load
 from dwd import DWD
+from wdwd import WDWD
 
 from patch_classifier.classifier.nn_models import MLP
 
@@ -39,6 +40,16 @@ class DWDClassifier(DWD, Classifier):
     # @classmethod
     # def load(cls, fpath):
     #     return load(fpath)
+
+class WDWDClassifier(WDWD, Classifier):
+    def __init__(self, C='auto'):
+        super().__init__(C)
+
+    def train(self, X, y):
+        WDWD.fit(self, X, y)
+
+    def accuracy(self, X, y):
+        return WDWD.score(self, X, y)
 
 # include in script
 # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
