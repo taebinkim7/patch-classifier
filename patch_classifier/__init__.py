@@ -1,2 +1,2 @@
 from .Paths import Paths
-from .classifier.models import DWDClassifier, WDWDClassifier
+from .classifier.models import *
