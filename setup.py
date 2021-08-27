@@ -7,6 +7,7 @@ install_requires = ['numpy',
                     'tqdm',
                     'joblib',
                     'dwd',
+                    'wdwd',
                     'scikit-image==0.16.2',
                     'torch==1.5.0',
                     'torchvision==0.6.0'
