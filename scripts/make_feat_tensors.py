@@ -21,3 +21,5 @@ def make_feat_tensors(image_type, grid_size=6):
     tensors_path = os.path.join(Paths().features_dir,
                                 'feat_tensors_' + image_type + '.csv')
     dump(tensors, tensors_path)
+
+make_feat_tensors('er')
