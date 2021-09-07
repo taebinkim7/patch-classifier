@@ -20,6 +20,6 @@ def make_feat_tensors(image_type, grid_size=6):
 
     tensors_path = os.path.join(Paths().features_dir,
                                 'core_tensors_' + image_type)
-    dump(tensors, tensors_path)
+    dump(tensors, tensors_path, compress=9)
 
 make_feat_tensors('er')
