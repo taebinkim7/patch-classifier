@@ -5,7 +5,7 @@ import pandas as pd
 from joblib import dump
 from patch_classifier.Paths import Paths
 
-def aggregate_patches(image_type, grid_size=6):
+def make_feat_tensors(image_type, grid_size=6):
     feats_path = os.path.join(Paths().features_dir,
                               'patch_features_' + image_type + '.csv')
     patch_feats = pd.read_csv(feats_path, index_col=['image', 'patch_idx'])
@@ -19,5 +19,5 @@ def aggregate_patches(image_type, grid_size=6):
         tensors[id] = tensor
 
     tensors_path = os.path.join(Paths().features_dir,
-                                'tensors_' + image_type + '.csv')
+                                'feat_tensors_' + image_type + '.csv')
     dump(tensors, tensors_path)
