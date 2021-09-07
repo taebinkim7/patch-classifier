@@ -9,7 +9,7 @@ from torch.utils.data import Dataset, DataLoader
 class MLP(nn.Module):
     def __init__(self):
         super(MLP, self).__init__()
-        self.fc1 = nn.Linear(512, 256) 
+        self.fc1 = nn.Linear(512, 256)
         self.fc2 = nn.Linear(256, 128)
         self.fc3 = nn.Linear(128, 64)
         self.output = nn.Linear(64, 1)
