@@ -88,7 +88,7 @@ def estimate_background(image, threshold_algo='triangle_otsu',
         Thresholding algorithm to estimate the background.
         'otsu': skimage.filters.threshold_otsu
         'triangle': skimage.filters.threshold_triangle
-        'triangle_otsu': .9 * triangle + .1 * otsu
+        'triangle_otsu': .5 * triangle + .5 * otsu
     threshold: None, float, int
         User provided threshold. If None, will be estimated using one
         of the thresholding algorithms.
@@ -114,7 +114,7 @@ def estimate_background(image, threshold_algo='triangle_otsu',
             triangle = threshold_triangle(grayscale_image)
             otsu = threshold_otsu(grayscale_image)
 
-            threshold = .9 * triangle + .1 * otsu
+            threshold = .5 * triangle + .5 * otsu
 
         else:
             raise ValueError('threshold_algo = {} is invalid argument'.\

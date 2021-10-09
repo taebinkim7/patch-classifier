@@ -13,7 +13,7 @@ from joblib import dump, load
 from dwd import DWD
 from wdwd import WDWD
 
-from patch_classifier.classifier.nn_models import MLP
+from patch_classifier.classifier.nn_models import *
 
 
 class Classifier(object):
@@ -50,6 +50,8 @@ class WDWDClassifier(WDWD, Classifier):
 
     def accuracy(self, X, y):
         return WDWD.score(self, X, y)
+
+# class CNNClassifier()
 
 # include in script
 # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
