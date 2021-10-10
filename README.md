@@ -20,17 +20,3 @@ Using python >= 3.7, install the package `patch-classifier` by running
 pip install -e .
 ```
 in the project directory.
-
-### 3. Image patch feature extraction
-
-```
-python scripts/patch_feat_extraction.py
-```
-
-This step extracts CNN features from each image patch and may take a few hours. If a GPU is available it will automatically be used.
-
-### 4. Binary classification
-
-```
-python scripts/classification.py
-```
