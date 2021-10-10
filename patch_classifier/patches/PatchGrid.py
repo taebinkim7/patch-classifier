@@ -34,6 +34,7 @@ class PatchGrid(object):
     """
 
     def __init__(self,
+                 paths=Paths(),
                  patch_size=200,
                  pad_image='div_200',
                  filter_background=True,
@@ -273,7 +274,7 @@ class PatchGrid(object):
         image_type = image_key.split('_')[-1]
         image_type = image_type.split('.')[0]
 
-        fpath = os.path.join(Paths().images_dir, image_type, image_key)
+        fpath = os.path.join(paths.images_dir, image_type, image_key)
         image = imread(fpath)
         return image
 
