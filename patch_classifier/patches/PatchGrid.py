@@ -16,6 +16,8 @@ class PatchGrid(object):
     Breaks each core in the dataset into a grid of patches.
     Parameters
     ----------
+    paths:str
+        Path to data
     patch_size: int
         Dimensions of patches.
     pad_image: str ('div_X'), int, None
@@ -52,7 +54,7 @@ class PatchGrid(object):
         self.limit = limit
         self.image_type = image_type
 
-        image_fnames = get_avail_images(self.image_type)
+        image_fnames = get_avail_images(paths, self.image_type)
         if limit is not None:
             image_fnames = image_fnames[0:limit]
 
