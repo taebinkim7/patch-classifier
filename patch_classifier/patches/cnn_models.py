@@ -32,6 +32,7 @@ class GlobalMeanPool2D(nn.Module):
 
 
 def append_to_sequential(net, mod):
-    net_list = list(net)
-    net_list.append(mod)
+    net_list = [net, mod]
+    # net_list = list(net)
+    # net_list.append(mod)
     return nn.Sequential(*net_list)
