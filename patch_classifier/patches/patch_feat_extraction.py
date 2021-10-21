@@ -10,9 +10,6 @@ from patch_classifier.patches.patch_features import compute_patch_features
 from patch_classifier.patches.cnn_models import load_cnn_model
 
 
-# CNN feature extraction model
-model = load_cnn_model()
-
 #######################
 # get patches dataset #
 #######################
@@ -20,8 +17,11 @@ model = load_cnn_model()
 # compute the backgorund mask for each image, break into patches, throw out
 # patches which have too much background
 
-def patch_feat_extraction(paths, image_type, patch_size=200, 
+def patch_feat_extraction(paths, image_type, patch_size=200,
                           pretrained_model='vgg16', max_prop_background=.9):
+
+    # CNN feature extraction model
+    model = load_cnn_model(pretrained_model=pretrained_model)
 
     os.makedirs(paths.features_dir, exist_ok=True)
     patch_kws = {'paths': paths,
