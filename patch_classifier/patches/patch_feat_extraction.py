@@ -27,7 +27,7 @@ def patch_feat_extraction(paths, image_type, patch_size=200,
     patch_kws = {'paths': paths,
                  'patch_size': patch_size,
                  'pad_image': 'div_' + str(patch_size),
-                 'max_prop_background': .9,
+                 'max_prop_background': max_prop_background,
                  'threshold_algo': 'triangle_otsu',
                  'image_type': image_type}
 
