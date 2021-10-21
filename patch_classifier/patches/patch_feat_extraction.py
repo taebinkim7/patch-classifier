@@ -20,12 +20,13 @@ model = load_cnn_model()
 # compute the backgorund mask for each image, break into patches, throw out
 # patches which have too much background
 
-def patch_feat_extraction(paths, image_type):
+def patch_feat_extraction(paths, image_type, patch_size=200,
+                          max_prop_background=.9):
 
     os.makedirs(paths.features_dir, exist_ok=True)
     patch_kws = {'paths': paths,
-                 'patch_size': 200,
-                 'pad_image': 'div_200',
+                 'patch_size': patch_size,
+                 'pad_image': 'div_' + str(patch_size),
                  'max_prop_background': .9,
                  'threshold_algo': 'triangle_otsu',
                  'image_type': image_type}
