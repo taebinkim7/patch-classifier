@@ -12,8 +12,9 @@ def load_cnn_model(pretrained_model='vgg16'):
     """
     if pretrained_model == 'vgg16':
         model = models.vgg16(pretrained=True).features.double()
-    elif pretrained_model == 'efficientnet-b7':
-        model = EfficientNet.from_pretrained('efficientnet-b7')
+    elif 'efficientnet' in pretrained_model: # e.g., efficientnet-b7
+        model = EffNetFeatExtractor(pretrained_model)
+        
     model = append_to_sequential(model, GlobalMeanPool2D())
 
     return model
@@ -24,6 +25,15 @@ def reshape2D(x):
     Reshapes x from (batch, channels, H, W) to (batch, channels, H * W)
     """
     return x.view(x.size(0), x.size(1), -1)
+
+
+class EffNetFeatExtractor(nn.Module):
+    def __init__(self, version='efficientnet-b7'):
+        super(EffNetFeatExtractor, self).__init__()
+        self.model = EfficientNet.from_pretrained(version)
+
+    def forward(self, x):
+        return self.model.extract_features(x)
 
 
 class GlobalMeanPool2D(nn.Module):
