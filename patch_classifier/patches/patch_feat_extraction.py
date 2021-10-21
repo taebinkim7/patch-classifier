@@ -20,8 +20,8 @@ model = load_cnn_model()
 # compute the backgorund mask for each image, break into patches, throw out
 # patches which have too much background
 
-def patch_feat_extraction(paths, image_type, patch_size=200,
-                          max_prop_background=.9):
+def patch_feat_extraction(paths, image_type, patch_size=200, 
+                          pretrained_model='vgg16', max_prop_background=.9):
 
     os.makedirs(paths.features_dir, exist_ok=True)
     patch_kws = {'paths': paths,

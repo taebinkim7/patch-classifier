@@ -2,14 +2,20 @@ import torch.nn as nn
 import torch
 import torchvision.models as models
 
+from efficientnet_pytorch import EfficientNet
 
-def load_cnn_model():
+
+def load_cnn_model(pretrained_model='vgg16'):
     """
     Loads the CNN feature extraction model used in the paper.
-    Global mean pool of last convolutional layer of pre-trained VGG16.
+    Global mean pool of last convolutional layer of pre-trained model.
     """
-    model = models.vgg16(pretrained=True).features.double()
+    if pretrained_model == 'vgg16':
+        model = models.vgg16(pretrained=True).features.double()
+    elif pretrained_model == 'efficientnet-b7':
+        model = EfficientNet.from_pretrained('efficientnet-b7')
     model = append_to_sequential(model, GlobalMeanPool2D())
+
     return model
 
 
