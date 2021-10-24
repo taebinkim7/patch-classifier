@@ -8,8 +8,8 @@ install_requires = ['numpy',
                     'joblib',
                     'dwd',
                     'scikit-image==0.16.2',
-                    'torch==1.5.0',
-                    'torchvision==0.6.0',
+                    'torch',
+                    'torchvision',
                     'efficientnet_pytorch'
                     ]
 
