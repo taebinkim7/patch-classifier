@@ -1,8 +1,8 @@
-# Patch-based image Classification
+# Patch-based Image Classification
 
 This repository implements patch-based image classification.
 
-# Instructions to run the code
+## Instructions to run the code
 
 ### 1. Setup data directory
 
