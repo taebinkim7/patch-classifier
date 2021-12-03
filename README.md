@@ -6,7 +6,7 @@ This repository implements patch-based image classification.
 
 ### 1. Setup data directory
 
-patch-classifier/Paths.py has instructions for setting up the data directory.
+The instructions for setting up the data directory is included in patch-classifier/Paths.py.
 
 ### 2. Install code
 
